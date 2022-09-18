@@ -1,3 +1,4 @@
+const Apify = require('apify');
 const _ = require('lodash');
 const url = require('url');
 const { log } = Apify.utils;
