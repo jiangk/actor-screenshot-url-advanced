@@ -3,12 +3,12 @@
     "type": "object",
     "schemaVersion": 1,
     "properties": {
-        "url": {
-            "title": "URL",
+        "urlFunction": {
+            "title": "URL function",
             "type": "string",
-            "description": "What URL you want to take screenshot of.",
-            "editor": "textfield",
-            "prefill": "https://www.apify.com/"
+            "description": "Function that evaluates the URL to screenshot",
+            "prefill": "async function urlFunction(context) {\n    return {\n        url: context.request.url};\n}",
+            "editor": "javascript"
         },
         "waitUntil": {
             "title": "Wait until",

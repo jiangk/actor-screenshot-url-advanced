@@ -1,14 +1,17 @@
 const _ = require('lodash');
 const url = require('url');
 const { crash } = require('./utils');
+const { tools } = require('@apify/scraper-tools');
 
 async function parseInput(input) {
     if (!input) crash('Did not receive input. Please make sure that INPUT is stored in Key-Value store');
     const parsedInput = {};
 
     // Process url
-    if (!input.url) crash('Input is missing url field');
-    parsedInput.url = input.url.startsWith('http') ? input.url : `http://${input.url}`;
+    if (!input.urlFunction) crash('Input is missing url function');
+    log.info('Evaluating URL...')
+    let evalueatedUrl = tools.evalFunctionOrThrow(this.input.pageFunction);
+    parsedInput.url = evalueatedUrl.startsWith('http') ? evalueatedUrl : `http://${evalueatedUrl}`;
     try {
         url.parse(parsedInput.url);
     } catch (error) {

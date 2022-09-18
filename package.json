@@ -4,6 +4,7 @@
 	"description": "Actor takes a screenshot of a loaded URL.",
 	"main": "main.js",
 	"dependencies": {
+		"@apify/scraper-tools": "^0.4.4",
 		"apify": "^2.0.1",
 		"lodash": "^4.17.21",
 		"puppeteer": "*"

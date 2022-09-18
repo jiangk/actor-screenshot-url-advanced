@@ -24,6 +24,8 @@ Apify.main(async () => {
             }
         }
     );
+
+    log.info('Evaluated URL: ' + url)
     log.info('Launching new page');
     const page = await browser.newPage();
     log.info('Changing viewport width');
