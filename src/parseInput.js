@@ -11,7 +11,9 @@ async function parseInput(input) {
 
     // Process url
     if (!input.urlFunction) crash('Input is missing url function');
-    let evaluatedUrl = tools.evalFunctionOrThrow(input.urlFunction);
+    let evaledUrlFunction = tools.evalFunctionOrThrow(input.urlFunction);
+    log.info("evaluatedUrlFunction: " + evaledUrlFunction)
+    let evaluatedUrl = evaledUrlFunction()
     log.info("evaluatedUrl: " + evaluatedUrl)
     parsedInput.url = evaluatedUrl.startsWith('http') ? evaluatedUrl : `http://${evaluatedUrl}`;
     try {
