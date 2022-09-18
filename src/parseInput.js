@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const url = require('url');
+const { log } = Apify.utils;
 const { crash } = require('./utils');
 const { tools } = require('@apify/scraper-tools');
 
@@ -10,6 +11,7 @@ async function parseInput(input) {
     // Process url
     if (!input.urlFunction) crash('Input is missing url function');
     let evaluatedUrl = tools.evalFunctionOrThrow(input.urlFunction);
+    log.info("evaluatedUrl: " + evaluatedUrl)
     parsedInput.url = evaluatedUrl.startsWith('http') ? evaluatedUrl : `http://${evaluatedUrl}`;
     try {
         url.parse(parsedInput.url);
