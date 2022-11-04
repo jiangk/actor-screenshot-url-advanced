@@ -22,6 +22,11 @@ async function parseInput(input) {
         crash(`Provided url "${parsedInput.url}" is not valid.`);
     }
 
+    // Page function
+    if (!input.pageFunction) crash('Input is missing page function');
+    let evaledPageFunction = tools.evalFunctionOrThrow(input.pageFunction);
+    parsedInput.pageFunction = evaledPageFunction;
+
     // Process waitUntil
     const waitUntilOptions = ['load', 'domcontentloaded', 'networkidle2', 'networkidle0'];
     if (!waitUntilOptions.includes(input.waitUntil)) {

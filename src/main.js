@@ -8,7 +8,7 @@ const { APIFY_DEFAULT_KEY_VALUE_STORE_ID } = process.env;
 Apify.main(async () => {
     // Load query from input
     const input = await Apify.getValue('INPUT');
-    const { url, waitUntil, delay, width } = await parseInput(input);
+    const { url, pageFunction, waitUntil, delay, width } = await parseInput(input);
 
     const { proxy } = await Apify.getInput();
     const proxyConfiguration = await Apify.createProxyConfiguration(proxy);
@@ -37,6 +37,10 @@ Apify.main(async () => {
         log.info(`Waiting ${delay}ms as specified in input`);
         await page.waitFor(delay);
     }
+
+    // Run page function
+    pageFunction(page);
+
     log.info('Saving screenshot');
     await saveScreenshot(page);
     log.info('Screenshot saved you can view it here:');

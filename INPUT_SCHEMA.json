@@ -7,7 +7,14 @@
             "title": "URL function",
             "type": "string",
             "description": "Function that evaluates the URL to screenshot",
-            "prefill": "async function urlFunction(context) {\n    return 'http://www.google.com'};\n}",
+            "prefill": "async function urlFunction() {\n    return 'http://www.google.com'};\n}",
+            "editor": "javascript"
+        },
+        "pageFunction": {
+            "title": "Page function",
+            "type": "string",
+            "description": "Function that manipulates the page prior to screenshot",
+            "prefill": "async function pageFunction(page) {\n}",
             "editor": "javascript"
         },
         "waitUntil": {
